@@ -11,5 +11,11 @@ namespace Converter
             IImageTypeConverter converter = new WebPConverter();
             return converter.Convert(fileLocation);
         }
+
+        public string UpdateFileFormatIntoPng(string fileLocation)
+        {
+            IImageTypeConverter converter = new PngConverter();
+            return converter.Convert(fileLocation);
+        }
     }
 }

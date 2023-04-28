@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using ImageMagick;
 using SixLabors.ImageSharp;
 namespace Converter
 {
@@ -8,7 +9,7 @@ namespace Converter
         public string Convert(string fileLocation)
         {
              var fileExtension = Path.GetExtension(fileLocation);
-            if(fileExtension == ".webp")
+            if(fileExtension == ".png")
             {
                 return fileLocation;
             }
@@ -17,13 +18,16 @@ namespace Converter
             string uploadFullPath = $"{uploadDir}/{fileName}{fileExtension}";
             try
             {
-                using (Image image = Image.Load(fileLocation))
+                // Read first frame of gif image
+                using (var image = new MagickImage(uploadFullPath))
                 {
-                    image.SaveAsPng(uploadFullPath);
+                    // Save frame as jpg
+                    image.Write($"{uploadDir}/{fileName}.png");
                 }
+
                 // DeleteOldImageAfterConversion(fileLocation);
                 return uploadFullPath;
-            }  catch(SixLabors.ImageSharp.UnknownImageFormatException e)
+            }  catch(MagickException  e)
             {
                 Console.WriteLine(e.Message);
                 return fileLocation;
