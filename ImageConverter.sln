@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{B
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Converter", "Converter\Converter.csproj", "{751FDBD8-B5CF-4B15-91DE-6E84A2F7F854}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "Console\Console.csproj", "{ACEE84BC-1EC0-42FE-9A69-8BE34C91030B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{751FDBD8-B5CF-4B15-91DE-6E84A2F7F854}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{751FDBD8-B5CF-4B15-91DE-6E84A2F7F854}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{751FDBD8-B5CF-4B15-91DE-6E84A2F7F854}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ACEE84BC-1EC0-42FE-9A69-8BE34C91030B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ACEE84BC-1EC0-42FE-9A69-8BE34C91030B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ACEE84BC-1EC0-42FE-9A69-8BE34C91030B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ACEE84BC-1EC0-42FE-9A69-8BE34C91030B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
