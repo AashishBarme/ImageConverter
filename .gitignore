@@ -346,3 +346,4 @@ obj
 *.svg
 *.pack
 *.angular
+API/bin/*
