@@ -9,4 +9,7 @@
     <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
   </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\Converter\Converter.csproj" />
+    </ItemGroup>
 </Project>

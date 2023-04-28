@@ -4,14 +4,14 @@ using System;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Converter;
 
 public class Program
 {
     static void Main(string[] args)
     {
-         CreateHostBuilder(args).Build().Run();
-        Console.WriteLine("Hello, World!");
-
+        CreateHostBuilder(args).Build().Run();
+        
     }
 
      public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -19,7 +19,9 @@ public class Program
                 .ConfigureServices((hostContext, services) =>
                 {
                     var configuration = BuildConfig();
-                    Console.WriteLine(configuration["FilePath"]);
+                    // services.AddSingleton<ImageFormatService>();
+                    var x  =  new ImageConverter();
+                    x.Convert(configuration);
                 });
 
       static IConfigurationRoot BuildConfig()
