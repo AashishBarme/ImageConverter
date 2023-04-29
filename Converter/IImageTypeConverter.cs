@@ -2,6 +2,6 @@ namespace Converter
 {
     public interface IImageTypeConverter
     {
-        public string Convert(string fileLocation);
+        public string Convert(string fileLocation, string fileType);
     }
 }

@@ -12,15 +12,12 @@ public  class ImageConverter
     public void Convert(IConfigurationRoot configuration)
     {
         var formatService =  new ImageFormatService();
-        // Console.WriteLine(configuration["FilePath"]);
         DirectoryInfo dInfo = new DirectoryInfo(configuration["filePath"]);
         FileInfo[] files = dInfo.GetFiles();
-
         foreach(var item in files)
         {
             Console.WriteLine(item.FullName);
-            Console.WriteLine(item.Directory.ToString());
-            formatService.UpdateFileFormatIntoPng(item.FullName.ToString());
+            formatService.UpdateFileFormat(item.FullName.ToString(), configuration["fileFormat"]);
         }
     } 
 }

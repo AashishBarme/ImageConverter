@@ -6,16 +6,10 @@ namespace Converter
 {
     public class ImageFormatService 
     {
-        public string UpdateFileFormatIntoWebp(string fileLocation)
+        public string UpdateFileFormat(string fileLocation, string fileType)
         {
-            IImageTypeConverter converter = new WebPConverter();
-            return converter.Convert(fileLocation);
-        }
-
-        public string UpdateFileFormatIntoPng(string fileLocation)
-        {
-            IImageTypeConverter converter = new PngConverter();
-            return converter.Convert(fileLocation);
+            IImageTypeConverter converter = new ImageConverter();
+            return converter.Convert(fileLocation, fileType);
         }
     }
 }

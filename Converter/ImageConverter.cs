@@ -1,29 +1,33 @@
 using System;
 using System.IO;
+using ImageMagick;
 using SixLabors.ImageSharp;
 namespace Converter
 {
-    public class WebPConverter: IImageTypeConverter
+    public class ImageConverter: IImageTypeConverter
     {
-        public string Convert(string fileLocation)
+        public string Convert(string fileLocation, string fileType)
         {
              var fileExtension = Path.GetExtension(fileLocation);
-            if(fileExtension == ".webp")
+            if(fileExtension == ".png")
             {
                 return fileLocation;
             }
             var fileName = Path.GetFileNameWithoutExtension(fileLocation);
             var uploadDir = Directory.GetParent(fileLocation).FullName;
-            string uploadFullPath = $"{uploadDir}/{fileName}.webp";
+            string uploadFullPath = $"{uploadDir}/{fileName}{fileExtension}";
             try
             {
-                using (Image image = Image.Load(fileLocation))
+                // Read first frame of gif image
+                using (var image = new MagickImage(uploadFullPath))
                 {
-                    image.SaveAsWebp(uploadFullPath);
+                    // Save frame as jpg
+                    image.Write($"{uploadDir}/{fileName}.png");
                 }
-                DeleteOldImageAfterConversion(fileLocation);
+
+                // DeleteOldImageAfterConversion(fileLocation);
                 return uploadFullPath;
-            }  catch(SixLabors.ImageSharp.UnknownImageFormatException e)
+            }  catch(MagickException  e)
             {
                 Console.WriteLine(e.Message);
                 return fileLocation;
