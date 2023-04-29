@@ -19,7 +19,6 @@ public class Program
                 .ConfigureServices((hostContext, services) =>
                 {
                     var configuration = BuildConfig();
-                    // services.AddSingleton<ImageFormatService>();
                     var x  =  new ImageConverter();
                     x.Convert(configuration);
                 });
@@ -29,9 +28,8 @@ public class Program
             
             var builder = new ConfigurationBuilder();
             builder.SetBasePath(Directory.GetParent(AppContext.BaseDirectory).FullName)
-            
             .AddEnvironmentVariables()
-             .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
+            .AddJsonFile("appsettings.json", optional: false, reloadOnChange: false)
 
             .AddJsonFile($"appsettings.{Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") ?? "Development"}.json", optional: true);
             return builder.Build();
