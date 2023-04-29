@@ -347,3 +347,4 @@ obj
 *.pack
 *.angular
 API/bin/*
+Converter/obj/*
