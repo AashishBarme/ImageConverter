@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Transactions;
 using ImageMagick;
 using SixLabors.ImageSharp;
 namespace Converter
@@ -31,6 +32,44 @@ namespace Converter
                 return fileLocation;
             }
         }
+
+
+
+        public byte[] Convert(Stream fileLocation, string fileFormat)
+        {
+            try
+            {
+                using (var memStream = new MemoryStream())
+                {
+                    using (var image = new MagickImage(fileLocation))
+                    {
+                        image.Format = GetMagickFormat(fileFormat);
+                        image.Write(memStream);
+                        return memStream.ToArray();
+                    }
+                }
+            }  catch(MagickException  e)
+            {
+                Console.WriteLine(e.Message);
+                return null;
+            }
+        }
+
+        private static MagickFormat GetMagickFormat(string format)
+        {
+            return format switch
+            {
+                "png" => MagickFormat.Png,
+                "jpg" => MagickFormat.Jpg,
+                "webp" => MagickFormat.WebP,
+                "tiff" => MagickFormat.Tiff,
+                "ico" => MagickFormat.Ico,
+                "gif" => MagickFormat.Gif,
+                _ => MagickFormat.Jpeg,
+            };
+        }
+
+
          private void DeleteOldImageAfterConversion(string path)
         {
             if (!File.Exists(path))
