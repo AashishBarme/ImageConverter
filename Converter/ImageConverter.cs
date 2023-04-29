@@ -9,20 +9,18 @@ namespace Converter
         public string Convert(string fileLocation, string fileType)
         {
              var fileExtension = Path.GetExtension(fileLocation);
-            if(fileExtension == ".png")
+            if(fileExtension == $".{fileType}")
             {
                 return fileLocation;
             }
             var fileName = Path.GetFileNameWithoutExtension(fileLocation);
-            var uploadDir = Directory.GetParent(fileLocation).FullName;
+            var uploadDir = Directory.GetParent(fileLocation)?.FullName;
             string uploadFullPath = $"{uploadDir}/{fileName}{fileExtension}";
             try
             {
-                // Read first frame of gif image
                 using (var image = new MagickImage(uploadFullPath))
                 {
-                    // Save frame as jpg
-                    image.Write($"{uploadDir}/{fileName}.png");
+                    image.Write($"{uploadDir}/{fileName}.{fileType}");
                 }
 
                 // DeleteOldImageAfterConversion(fileLocation);
